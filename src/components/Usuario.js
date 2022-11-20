@@ -1,16 +1,22 @@
+let imgUser = "assets/img/catanacomics.svg";
+let perfilNome = "catanacomics";
+let nome = "Catana";
+
+function User(props) {
+  return (
+    <div className="usuario">
+      <img src={props.imgUser} />
+      <div className="texto">
+        <strong>{props.perfilNome}</strong>
+        <span>
+          {props.nome}
+          <ion-icon name="pencil"></ion-icon>
+        </span>
+      </div>
+    </div>
+  );
+}
 
 export default function Usuario() {
-    return (
-      <div className="usuario">
-        <img src="assets/img/catanacomics.svg" />
-        <div className="texto">
-          <strong>catanacomics</strong>
-          <span>
-            Catana
-            <ion-icon name="pencil"></ion-icon>
-          </span>
-        </div>
-      </div>
-    );
-  }
-  
+  return <User imgUser={imgUser} perfilNome={perfilNome} nome={nome}/>;
+}
