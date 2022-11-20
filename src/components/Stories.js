@@ -42,7 +42,7 @@ function Story(props) {
       <div className="usuario">{props.usuario}</div>
     </div>
   );
-}
+};
 
 export default function Stories() {
   return (
@@ -62,4 +62,4 @@ export default function Stories() {
       </div>
     </div>
   );
-}
+};
