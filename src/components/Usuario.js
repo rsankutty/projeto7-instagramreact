@@ -1,22 +1,39 @@
-let imgUser = "assets/img/catanacomics.svg";
-let perfilNome = "catanacomics";
-let nome = "Catana";
+import React from 'react';
+
+
+export default function Usuario() {
+  const perfilNome = "catanacomics";
+  const [nome, setName] = React.useState("Catana");
+  const [imgUser, setImg] = React.useState("assets/img/catanacomics.svg");
+
+function changeName(){
+  let newName = prompt("Insira um novo nome");
+  if (newName){
+    setName(newName);
+  }
+}
+
+function changeImg(){
+let newImg = prompt("Insira o link da nova imagem");
+if (newImg){
+  setName(newImg);
+}
+}
 
 function User(props) {
+  
   return (
     <div className="usuario">
-      <img src={props.imgUser} />
+      <img src={props.imgUser} onClick={changeImg} />
       <div className="texto">
         <strong>{props.perfilNome}</strong>
         <span>
           {props.nome}
-          <ion-icon name="pencil"></ion-icon>
+          <ion-icon onClick={changeName} name="pencil"></ion-icon>
         </span>
       </div>
     </div>
   );
 }
-
-export default function Usuario() {
   return <User imgUser={imgUser} perfilNome={perfilNome} nome={nome}/>;
 }
