@@ -16,7 +16,7 @@ function changeName(){
 function changeImg(){
 let newImg = prompt("Insira o link da nova imagem");
 if (newImg){
-  setName(newImg);
+  setImg(newImg);
 }
 }
 
