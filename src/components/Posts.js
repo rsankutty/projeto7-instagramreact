@@ -1,3 +1,5 @@
+import React from "react";
+
 const postsArr = [
   {
     imgUsuario: "assets/img/meowed.svg",
@@ -18,11 +20,13 @@ const postsArr = [
 ];
 
 function Post(props) {
+  const [salvo, setSalvo] = React.useState("bookmark-outline");
+
   return (
     <div className="post">
       <div className="topo">
         <div className="usuario">
-          <img src={props.imgUsuario}/>
+          <img src={props.imgUsuario} />
           {props.nomeUsuario}
         </div>
         <div className="acoes">
@@ -42,7 +46,14 @@ function Post(props) {
             <ion-icon name="paper-plane-outline"></ion-icon>
           </div>
           <div>
-            <ion-icon name="bookmark-outline"></ion-icon>
+            <ion-icon
+              onClick={() =>
+                salvo == "bookmark"
+                  ? setSalvo("bookmark-outline")
+                  : setSalvo("bookmark")
+              }
+              name={salvo}
+            ></ion-icon>
           </div>
         </div>
 
