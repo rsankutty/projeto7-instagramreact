@@ -7,7 +7,7 @@ const postsArr = [
     userPost: "assets/img/gato-telefone.svg",
     imgCurtiu: "assets/img/respondeai.svg",
     nomeCurtiu: "respondeai",
-    qtdCurtiu: "101.523",
+    qtdCurtiu: 101.523,
   },
   {
     imgUsuario: "assets/img/barked.svg",
@@ -15,15 +15,47 @@ const postsArr = [
     userPost: "assets/img/dog.svg",
     imgCurtiu: "assets/img/adorable_animals.svg",
     nomeCurtiu: "adorable_animals",
-    qtdCurtiu: "99.159",
+    qtdCurtiu: 99.159,
   },
 ];
 
 function Post(props) {
   const [salvo, setSalvo] = React.useState("bookmark-outline");
+  const [heartClass, setHeartClass] = React.useState("");
+  const [heartIcon, setHeartIcon] = React.useState("heart-outline");
+  let [likesNumber, setLikesNumber] = React.useState(props.qtdCurtiu);
+
+  function likeButton() {
+    if (heartIcon == "heart-outline") {
+      setHeartIcon("heart");
+      setHeartClass("heart");
+      likesNumber = parseFloat(likesNumber);
+      likesNumber += 0.001;
+      likesNumber = likesNumber.toFixed(3);
+      setLikesNumber(likesNumber);
+    } else {
+      setHeartIcon("heart-outline");
+      setHeartClass("");
+      likesNumber = parseFloat(likesNumber);
+      likesNumber -= 0.001;
+      likesNumber = likesNumber.toFixed(3);
+      setLikesNumber(likesNumber);
+    }
+  }
+
+  function likeImg() {
+    if (heartIcon == "heart-outline") {
+      setHeartIcon("heart");
+      setHeartClass("heart");
+      likesNumber = parseFloat(likesNumber);
+      likesNumber += 0.001;
+      likesNumber = likesNumber.toFixed(3);
+      setLikesNumber(likesNumber);
+    }
+  }
 
   return (
-    <div className="post">
+    <div className="post" data-test="post">
       <div className="topo">
         <div className="usuario">
           <img src={props.imgUsuario} />
@@ -35,18 +67,24 @@ function Post(props) {
       </div>
 
       <div className="conteudo">
-        <img src={props.userPost} />
+        <img onClick={likeImg} src={props.userPost} data-test="post-image" />
       </div>
 
       <div className="fundo">
         <div className="acoes">
           <div>
-            <ion-icon name="heart-outline"></ion-icon>
+            <ion-icon
+              data-test="like-post"
+              onClick={likeButton}
+              class={heartClass}
+              name={heartIcon}
+            ></ion-icon>
             <ion-icon name="chatbubble-outline"></ion-icon>
             <ion-icon name="paper-plane-outline"></ion-icon>
           </div>
           <div>
             <ion-icon
+              data-test="save-post"
               onClick={() =>
                 salvo == "bookmark"
                   ? setSalvo("bookmark-outline")
@@ -59,9 +97,9 @@ function Post(props) {
 
         <div className="curtidas">
           <img src={props.imgCurtiu} />
-          <div className="texto">
+          <div className="texto" data-test="likes-number">
             Curtido por <strong>{props.nomeCurtiu}</strong> e{" "}
-            <strong>outras {props.qtdCurtiu} pessoas</strong>
+            <strong>outras {likesNumber} pessoas</strong>
           </div>
         </div>
       </div>

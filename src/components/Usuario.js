@@ -23,13 +23,13 @@ if (newImg){
 function User(props) {
   
   return (
-    <div className="usuario">
-      <img src={props.imgUser} onClick={changeImg} />
+    <div className="usuario" data-test="user">
+      <img src={props.imgUser} onClick={changeImg} data-test="profile-image"/>
       <div className="texto">
         <strong>{props.perfilNome}</strong>
-        <span>
+        <span data-test="name">
           {props.nome}
-          <ion-icon onClick={changeName} name="pencil"></ion-icon>
+          <ion-icon onClick={changeName} data-test="edit-name" name="pencil"></ion-icon>
         </span>
       </div>
     </div>
